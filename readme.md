@@ -5,9 +5,7 @@
 ## 动画截图
 ![动画截图](./1.jpg)
 ## 动画
-<video controls>
-  <source src="https://gitee.com/Tzian/datawhale_task_5month/blob/master/00.mp4" type="video/mp4">
-</video>
+![动画截图](./00.gif)
 
 ## 总结
 整体上，感觉大模型们表现的很好，尤其是在常识性，通用性的知识方面，对于新接触的领域或事物，大模型们能帮助我们快速的上手；但在细致深入的问题上，大模型们的帮助较少，有时甚至会误导我们。
