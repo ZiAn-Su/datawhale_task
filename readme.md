@@ -7,7 +7,6 @@
 ## 动画
 <video controls>
   <source src="00.mp4" type="video/mp4">
-  Your browser does not support the video tag.
 </video>
 
 ## 总结
