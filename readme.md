@@ -6,7 +6,7 @@
 ![动画截图](./1.jpg)
 ## 动画
 <video controls>
-  <source src="00.mp4" type="video/mp4">
+  <source src="https://gitee.com/Tzian/datawhale_task_5month/blob/master/00.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
