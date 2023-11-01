@@ -5,7 +5,7 @@
 noise = torch.rand_like(x)  
 noisy_x = (1-amount)*x + amount*noise  
 DDPM的权重变化，橙色线为amount：  
-![amount变化曲线](./权重变化.png)  
+![amount变化曲线](./Pictures/权重变化.png)  
 损失函数的目标：最小化预测噪声和噪声之间的误差  
 时间步长：一次性预测去除全部噪声效果不如一步步去除噪声
 ### 训练
@@ -25,7 +25,7 @@ image_pipe.save_pretrained("my_pipeline")
 butterfly_pipeline = DDPMPipeline.from_pretrained("my_pipeline").to(device)  
 
 ## 赛博猫咪
-![赛博猫咪](./赛博猫咪.png)
+![赛博猫咪](./Pictures/赛博猫咪.png)
 
 ## 第二课 
 ### 加速采样过程
@@ -44,4 +44,29 @@ butterfly_pipeline = DDPMPipeline.from_pretrained("my_pipeline").to(device)
 训练时，2的图像与控制输入数字2都参与到训练中，2的图像+随机噪声+输入数字2输入到模型中，模型预测噪声后，预测噪声与随机噪声做误差计算；只有输入数字是2时，会产生2图像对应的噪声，推理时，从带噪图像中预测2图像对应的噪声，一次次从带噪图像中分离2图像对应的噪声，最终就会得到2的图像。
 
 ## 老虎人
-![老虎人](./老虎.png)
+![老虎人](./Pictures/老虎.png)
+
+## 第三课 
+stable diffusion是一个文生图潜在扩散模型，主要由VAE、Tokenizer、文本编码器、Unet、调度器组成。
+### VAE(Variational Auto-Encoder)
+由于注意力的使用，使得计算量随图像尺寸的增加，平方的增长，尺寸扩大一倍，计算量增加四倍，因此，引用VAE用将图像表示为更小的潜在表示，降低运算量。
+![VAE](./Pictures/VAE.png)
+### Tokenizer(词法分析器)
+将单词转为数字，如下将‘A painting of a flooble’转为带始末标志的8个数字
+![指令器](./Pictures/指令器.png)
+### Text Encoder（文本编码器）
+将token转为编码块  
+![文本编码器](./Pictures/文本编码器.png)  
+### Unet
+输入文本编码、带噪声图像的潜在空间表示、迭代次数，输出噪声图像的潜在空间表示  
+![Unet](./Pictures/Unet.png)
+### Scheduler(调度器)
+训练时，模型预测前，以一定比例向图像中添加噪声，作为模型预测的输入；推理时，模型预测后，控制从有噪声的图像中减去噪声；
+noise = torch.rand_like(x)  
+noisy_x = (1-amount)*x + amount*noise 
+
+## 春夏秋冬
+![春](./Pictures/1.png)
+![夏](./Pictures/2.png)
+![秋](./Pictures/3.png)
+![冬](./Pictures/4.png)
