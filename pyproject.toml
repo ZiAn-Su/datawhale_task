@@ -1,0 +1,15 @@
+[project]
+name = "helloagents"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=2.7.0",
+    "requests>=2.32.5",
+    "tavily-python>=0.7.12",
+]
+
+[[tool.uv.index]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
