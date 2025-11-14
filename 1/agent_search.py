@@ -4,7 +4,8 @@ import os
 from tavily import TavilyClient
 from openai import OpenAI
 import re
-import json
+from dotenv import load_dotenv
+
 AGENT_SYSTEM_PROMPT = """
 你是一个智能旅行助手。你的任务是分析用户的请求，并使用可用工具一步步地解决问题。
 
@@ -22,6 +23,8 @@ Action: [这里是你要调用的工具，格式为 function_name(arg_name="arg_
 
 请开始吧！
 """
+# 加载 .env 文件中的环境变量
+load_dotenv()
 
 def get_weather(city: str) -> str:
     """
@@ -128,13 +131,11 @@ class OpenAICompatibleClient:
 
 # --- 1. 配置LLM客户端 ---
 # 请根据您使用的服务，将这里替换成对应的凭证和地址
-with open('api_key.json') as f:
-    api_keys=json.load(f)
-API_KEY = api_keys['API_KEY']
-BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-MODEL_ID = "deepseek-r1"
-TAVILY_API_KEY=api_keys['TAVILY_API_KEY']
-os.environ['TAVILY_API_KEY'] = api_keys['TAVILY_API_KEY']
+API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("BASE_URL")
+MODEL_ID = os.getenv("MODEL_ID")
+TAVILY_API_KEY=os.getenv("TAVILY_API_KEY")
+os.environ['TAVILY_API_KEY'] = os.getenv("TAVILY_API_KEY")
 
 llm = OpenAICompatibleClient(
     model=MODEL_ID,
